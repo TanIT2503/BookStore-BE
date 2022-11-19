@@ -20,6 +20,11 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
+    public Page<Book> findAllBookByCategoryId(Long categoryId, Pageable pageable) {
+        return bookRepository.findAllBookByCategoryId(categoryId, pageable);
+    }
+
+    @Override
     public List<Book> findTopNewBook() {
         return bookRepository.findTopNewBook();
     }
@@ -27,5 +32,15 @@ public class BookServiceImpl implements IBookService {
     @Override
     public Book findById(Long id) {
         return bookRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Page<Book> findAllBookByPromotion(Pageable pageable) {
+        return bookRepository.findAllBookByPromotion(pageable);
+    }
+
+    @Override
+    public Page<Book> searchBook(String searchKey, Pageable pageable) {
+        return bookRepository.searchBook(searchKey, pageable);
     }
 }

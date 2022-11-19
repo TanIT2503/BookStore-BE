@@ -32,19 +32,15 @@ public class AccountController {
 
     @PostMapping("/create-Customer-Account")
     public ResponseEntity<?> createCustomerAccount(@RequestBody CustomerAccount customerAccount, BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errors = new HashMap<>();
-            bindingResult.getAllErrors().forEach((error) -> {
-                String fieldName = ((FieldError) error).getField();
-                String errorMessage = error.getDefaultMessage();
-                errors.put(fieldName, errorMessage);
-            });
-            System.out.println(errors);
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }else {
-            accountService.createCustomerAccount(customerAccount);
-            return new ResponseEntity<>(HttpStatus.OK);
+        if(accountService.findAccountByUsername(customerAccount.getAccount().getUsername()) != null){
+            System.out.println("Test");
+            bindingResult.rejectValue("username", "Tên tài khoản đã tồn tại.");
         }
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+        }
+        accountService.createCustomerAccount(customerAccount);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping({"/forAdmin"})
