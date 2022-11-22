@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(  "/api/account/forAdmin").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/api/account/forUser").hasAuthority("ROLE_USER")
-                .antMatchers("/api/book/**", "/auth/login", "/api/category/**", "/api/account/**").permitAll()
+                .antMatchers("/api/book/**", "/auth/login", "/api/category/**", "/api/account/**", "/api/cart/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()

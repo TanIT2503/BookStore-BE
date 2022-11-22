@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface IAccountService {
     Account findAccountByUsername(String username);
+    Account findById(Long id);
     String getEncodedPassword(String password);
     void createCustomerAccount(CustomerAccount customerAccount);
 }

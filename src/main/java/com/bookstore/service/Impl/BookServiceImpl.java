@@ -43,4 +43,9 @@ public class BookServiceImpl implements IBookService {
     public Page<Book> searchBook(String searchKey, Pageable pageable) {
         return bookRepository.searchBook(searchKey, pageable);
     }
+
+    @Override
+    public Book updateQuantityBook(Book book) {
+        return bookRepository.save(book);
+    }
 }

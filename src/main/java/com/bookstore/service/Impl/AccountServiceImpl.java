@@ -31,6 +31,11 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
+    public Account findById(Long id) {
+        return accountRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);
     }

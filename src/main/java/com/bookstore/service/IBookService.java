@@ -14,4 +14,5 @@ public interface IBookService {
     Page<Book> findAllBookByPromotion(Pageable pageable);
 
     Page<Book> searchBook(String searchKey, Pageable pageable);
+    Book updateQuantityBook(Book book);
 }
